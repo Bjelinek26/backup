@@ -5,16 +5,24 @@ hardcoded so the script can be added to anacrontab or crontab.  You
 will need to modify this script to meet your needs.  If you have not already
 created an rclone remote run "rclone config" before modifying this script"
 
-(rclone sync ~/Audio/Podcasts BradD:/Podcasts)
+echo "working....."
 
-(rclone sync ~/Music BradD:/Music)
+rclone sync ~/Audio/Podcasts BradD:/Podcasts;
 
-(rclone sync ~/git BradD:/git)
+(echo "Subshell 1: Music"; rclone sync ~/Music BradD:/Music;
 
-(rclone sync ~/Pictures BradD:/Pictures)
+	(echo "Subshell 2: git"; rclone sync ~/git BradD:/git;
 
-(rclone sync ~/CBT BradD:/CBT)
+		(echo  "Subshell 3: Pictures"; rclone sync ~/Pictures BradD:/Pictures;
 
-(rclone sync ~/Linux_Lives BradD:/Linux_Lives)
+			(echo "Subshell 4: CBT"; rclone sync ~/CBT BradD:/CBT;
 
-(rclone sync ~/Udemy BradD:/Udemy)
+				(echo "Subshell 5: Linux_Lives"; rclone sync ~/Linux_Lives BradD:/Linux_Lives;
+
+					(echo "Subshell 6: Udemy"; rclone sync ~/Udemy BradD:/Udemy;
+					)
+				)
+			)
+		)
+	)
+)
