@@ -7,22 +7,25 @@ created an rclone remote run "rclone config" before modifying this script"
 
 echo "working....."
 
-rclone sync ~/Audio/Podcasts BradD:/Podcasts;
+(echo "subshell ${BASH_SUBSHELL} Podcasts"; rclone sync ~/Audio/Podcasts BradD:/Podcasts & 
 
-(echo "Subshell 1: Music"; rclone sync ~/Music BradD:/Music;
+	(echo "subshell ${BASH_SUBSHELL} Music"; rclone sync ~/Music BradD:/Music &
 
-	(echo "Subshell 2: git"; rclone sync ~/git BradD:/git;
+		(echo "subshell ${BASH_SUBSHELL} git"; rclone sync ~/git BradD:/git &
 
-		(echo  "Subshell 3: Pictures"; rclone sync ~/Pictures BradD:/Pictures;
+			(echo  "subshell ${BASH_SUBSHELL} Pictures"; rclone sync ~/Pictures BradD:/Pictures &
 
-			(echo "Subshell 4: CBT"; rclone sync ~/CBT BradD:/CBT;
+				(echo "subshell ${BASH_SUBSHELL} CBT"; rclone sync ~/CBT BradD:/CBT &
 
-				(echo "Subshell 5: Linux_Lives"; rclone sync ~/Linux_Lives BradD:/Linux_Lives;
+					(echo "subshell ${BASH_SUBSHELL} Linux_Lives"; rclone sync ~/Linux_Lives BradD:/Linux_Lives &
 
-					(echo "Subshell 6: Udemy"; rclone sync ~/Udemy BradD:/Udemy;
-					)
-				)
-			)
-		)
-	)
+						(echo "subshell ${BASH_SUBSHELL} Udemy"; rclone sync -L ~/Udemy BradD:/Udemy) & 
+					) 
+				) 
+			) 
+		) 
+	) 
 )
+
+
+
