@@ -27,5 +27,7 @@ echo "working....."
 	) 
 )
 
+ps -ejH | grep -i rclone
+
 
 
