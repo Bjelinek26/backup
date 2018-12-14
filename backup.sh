@@ -27,7 +27,7 @@ echo "working....."
 	) 
 )
 
-ps -ejH | grep -i rclone
+ps -eo user,lwp,nlwp,%cpu,args | grep -i rclone
 
 
 
